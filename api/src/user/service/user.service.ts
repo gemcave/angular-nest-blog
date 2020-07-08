@@ -58,7 +58,7 @@ export class UserService {
     return from(this.userRepository.delete(id));
   }
 
-  update(id: number, user: User): Observable<any> {
+  updateOne(id: number, user: User): Observable<any> {
     delete user.email;
     delete user.password;
 
@@ -78,7 +78,7 @@ export class UserService {
   }
 
   validateUser(email: string, password: string): Observable<User> {
-    return this.findByEmail(email).pipe(
+    return this.findByMail(email).pipe(
       switchMap((user: User) =>
         this.authService.comparePasswords(password, user.password).pipe(
           map((match: boolean) => {
@@ -94,7 +94,7 @@ export class UserService {
     );
   }
 
-  findByEmail(email: string): Observable<User> {
+  findByMail(email: string): Observable<User> {
     return from(this.userRepository.findOne({ email }));
   }
 }
