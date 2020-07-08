@@ -51,6 +51,6 @@ export class UserController {
 
   @Put(':id')
   updateOne(@Param('id') id: string, @Body() user: User): Observable<any> {
-    return this.userService.update(Number(id), user);
+    return this.userService.updateOne(Number(id), user);
   }
 }
